@@ -1,0 +1,14 @@
+name: WBLite
+author: [white_cola,lvxinlei]
+version: 2.9.1
+main: top.whitecola.wblite.WBLite
+depend: [MiraiBukkit,WhiteList]
+commands: 
+  wb: 
+   usage: /wb <childCmd> [args]...
+permissions: 
+  wb.reload: 
+   default: op
+  wb.sendmsg: 
+   default: op 
+    
