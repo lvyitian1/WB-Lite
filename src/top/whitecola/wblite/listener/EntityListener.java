@@ -13,7 +13,7 @@ import top.whitecola.wblite.WBLite;
 import top.whitecola.wlbot.util.BotUtil;
 import top.whitecola.wlbot.util.GroupUtil;
 
-public class EntityListener implements Listener{
+public class EntityListener implements Listener {
 	@EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=false)
 	public void onCreeperExplosionPrime(ExplosionPrimeEvent e) {
 		if((!WBLite.instance.config.getConfig().serverEventSentToGroup) || (!WBLite.instance.config.getConfig().creeperEventMsg)) {
@@ -26,15 +26,15 @@ public class EntityListener implements Listener{
 			if(e.getEntity() instanceof Creeper) {
 				Creeper cr = (Creeper)e.getEntity();
 				Location loc = cr.getLocation();
-				BotUtil.sendEventMessageToGroup("¿àÁ¦ÅÂ±¬Õ¨ÔÚ "+loc.getWorld().getName()+"ÊÀ½ç "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ());
+				BotUtil.sendEventMessageToGroup("è‹¦åŠ›æ€•çˆ†ç‚¸åœ¨ "+loc.getWorld().getName()+"ä¸–ç•Œ "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ());
 				Player tp = null;
 				if(cr.getTarget() instanceof Player) {
 					tp = (Player)cr.getTarget();
 				}
 				if(tp!=null) {
-					GroupUtil.sendMsgToGroupAuto("¿àÁ¦ÅÂ±¬Õ¨Ä¿±êÍæ¼ÒÎª "+tp.getName());
+					GroupUtil.sendMsgToGroupAuto("è‹¦åŠ›æ€•çˆ†ç‚¸ç›®æ ‡ç©å®¶ä¸º "+tp.getName());
 				}else {
-					GroupUtil.sendMsgToGroupAuto("Ã»ÓĞÕÒµ½¿àÁ¦ÅÂ±¬Õ¨Ä¿±êÍæ¼Ò,¹¥»÷Ä¿±êÍæ¼Ò¿ÉÄÜÒÑËÀÍö»òÏÂÏß »òÕß¸Ã¿àÁ¦ÅÂÊÇ±»´ò»ğÊ¯Òı±¬");
+					GroupUtil.sendMsgToGroupAuto("æ²¡æœ‰æ‰¾åˆ°è‹¦åŠ›æ€•çˆ†ç‚¸ç›®æ ‡ç©å®¶,æ”»å‡»ç›®æ ‡ç©å®¶å¯èƒ½å·²æ­»äº¡æˆ–ä¸‹çº¿ æˆ–è€…è¯¥è‹¦åŠ›æ€•æ˜¯è¢«æ‰“ç«çŸ³å¼•çˆ†");
 				}
 			}
 		}
