@@ -1,0 +1,42 @@
+/*buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven {
+          url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
+        }
+    }
+}*/
+group = 'top.whitecola.wblite'
+version = '2.9.3'
+plugins {
+    id "java"
+    //id "eclipse"
+}
+repositories{
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+  maven {
+    url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
+  }
+}
+dependencies {
+    compileOnly 'net.mamoe:mirai-core-qqandroid:1.0.3'
+    compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
+    compileOnly "org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT"
+    compileOnly 'org.jetbrains:annotations:20.0.0'
+    
+}
+sourceSets {
+    main.java.srcDir 'src/'
+}
+sourceCompatibility = 1.8
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'output'
+       }
+    }
+}
