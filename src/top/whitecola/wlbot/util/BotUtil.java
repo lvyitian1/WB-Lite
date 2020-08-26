@@ -13,6 +13,16 @@ public class BotUtil {
 		if(!WBLite.instance.config.getConfig().groupMsgSendToGame) {
 			return;
 		}
+		if(WBLite.instance.config.getConfig().forbidNewLineInGroupMsg)
+		{
+			msg=msg.replace("\r\n","");
+			msg=msg.replace("\n","");
+		}
+		if(WBLite.instance.config.getConfig().forbidColorInGroupMsg)
+		{
+			for(org.bukkit.ChatColor i : org.bukkit.ChatColor.values())
+				msg=msg.replace(i.toString(),"");
+		}
 		if(WBLite.instance.config.getConfig().isMsgSynchronousStartWithString) {
 			if(!msg.startsWith(WBLite.instance.config.getConfig().msgSynchronousStartWithStringContent)) {
 				return;
@@ -35,6 +45,11 @@ public class BotUtil {
 	public static void sendServerMsgToGroup(String msg,Player p) {
 		if(!WBLite.instance.config.getConfig().serverMsgSendToGroup) {
 			return;
+		}
+		if(WBLite.instance.config.getConfig().removeColorText)
+		{
+		    for(org.bukkit.ChatColor i : org.bukkit.ChatColor.values())
+				msg=msg.replace(i.toString(),"");
 		}
 		if(WBLite.instance.config.getConfig().isMsgSynchronousStartWithString) {
 			if(!msg.startsWith(WBLite.instance.config.getConfig().msgSynchronousStartWithStringContent)) {
