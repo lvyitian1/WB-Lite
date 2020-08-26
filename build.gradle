@@ -6,6 +6,9 @@ buildscript {
         maven {
           url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
         }
+        maven {
+          url "https://hub.spigotmc.org/nexus/content/repositories/central"
+        }
     }
 }
 plugins {
@@ -18,6 +21,9 @@ repositories{
   jcenter()
   maven {
     url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
+  }
+  maven {
+    url "https://hub.spigotmc.org/nexus/content/repositories/central"
   }
 }
 group = 'top.whitecola.wblite'
