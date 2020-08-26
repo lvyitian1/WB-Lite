@@ -54,6 +54,9 @@ sourceSets {
         }
     }
 }
+tasks.withType(Jar) {
+    destinationDir = file("$rootDir/build/libs") 
+}
 sourceCompatibility = 1.8
 uploadArchives {
     repositories {
