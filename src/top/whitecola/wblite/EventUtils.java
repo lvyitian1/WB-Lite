@@ -8,9 +8,9 @@ import top.dsbbs2.common.lambda.INoThrowsRunnable;
 public final class EventUtils {
 private EventUtils() {}
 @SuppressWarnings("unchecked")
-public static <T extends Event> void registerEvents(Object o)
+public static <T extends Event> void registerEvents(Object o) 
 {
-	System.out.println("¡ìb¿ªÊ¼¶©ÔÄÊÂ¼ş");
+	System.out.println("Â§bå¼€å§‹è®¢é˜…äº‹ä»¶");
 	INoThrowsRunnable.invoke(()->{
 		Method[] methods=o.getClass().getDeclaredMethods();
 		for(Method i:methods)
@@ -39,6 +39,6 @@ public static <T extends Event> void registerEvents(Object o)
 			}
 		}
 	});
-	System.out.println("¡ìbÒÑ¶©ÔÄÊÂ¼ş,¿ªÊ¼µÇÂ½,Õâ¿ÉÄÜĞèÒªÒ»¶ÎÊ±¼ä(Çë×¢ÒâµÇÂ½µ¯´°)!");
+	System.out.println("Â§bå·²è®¢é˜…äº‹ä»¶,å¼€å§‹ç™»é™†,è¿™å¯èƒ½éœ€è¦ä¸€æ®µæ—¶é—´(è¯·æ³¨æ„ç™»é™†å¼¹çª—)!");
 }
 }
