@@ -35,7 +35,7 @@ public class PlayerListener implements Listener {
 				if(wlp!=null&&wlp.QQ!=-1) {
 					if(!GroupUtil.isQQInGroupAuto(wlp.QQ)) {
 						Bukkit.getScheduler().runTask(WBLite.instance, ()->{
-							CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "remove").onCommand(Bukkit.getConsoleSender(), WhiteListPlugin.instance.getCommand("wl"), "wl", new String[] {"remove",e.getPlayer().getName()});
+							top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "remove").onCommand(Bukkit.getConsoleSender(), WhiteListPlugin.instance.getCommand("wl"), "wl", new String[] {"remove",e.getPlayer().getName()});
 						});
 					}
 				}
@@ -63,13 +63,13 @@ public class PlayerListener implements Listener {
 		Object wlp=WBLite.wl!=null?PlayerUtil.getWLPlayerByName(p.getName()):null;
 		if(wlp!=null)
 		{
-			if((WhiteListConfig.WLPlayer)wlp.QQ!=-1) {
+			if(((WhiteListConfig.WLPlayer)wlp).QQ!=-1) {
 				if(type==1) {
-					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+(WhiteListConfig.WLPlayer)wlp.QQ+"] 加入了游戏.");
+					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 加入了游戏.");
 					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
 					return;
 				}else {
-					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+(WhiteListConfig.WLPlayer)wlp.QQ+"] 退出了游戏.");
+					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 退出了游戏.");
 					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
 					return;
 				}

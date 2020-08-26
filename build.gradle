@@ -3,7 +3,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         jcenter()
-        maven {
+        /*maven {
           url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
         }
         maven {
@@ -11,7 +11,7 @@ buildscript {
         }
         maven {
           url "https://hub.spigotmc.org/nexus/content/repositories/public"
-        }
+        }*/
     }
 }
 plugins {
@@ -22,7 +22,7 @@ repositories{
   mavenLocal()
   mavenCentral()
   jcenter()
-  maven {
+  /*maven {
     url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
   }
   maven {
@@ -30,16 +30,16 @@ repositories{
   }
   maven {
     url "https://hub.spigotmc.org/nexus/content/repositories/public"
-  }
+  }*/
 }
 group = 'top.whitecola.wblite'
 version = '2.9.3'
 dependencies {
     compileOnly 'net.mamoe:mirai-core-qqandroid:1.0.3'
-    compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
-    compileOnly "org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT"
+    //compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
+    //compileOnly "org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT"
     compileOnly 'org.jetbrains:annotations:20.0.0'
-    compileOnly files("libs/BukkitWhiteList[3.7.4].jar")
+    compileOnly fileTree(dir:'libs',include:['*.jar'])
 }
 /*sourceSets {
     main.java.srcDir 'src/'

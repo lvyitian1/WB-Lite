@@ -64,7 +64,7 @@ public final class BotListener {
 							return;
 						}
 						String name = temp[1];
-						Bukkit.getScheduler().runTask(WBLite.instance, ()->CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "add").onCommand(
+						Bukkit.getScheduler().runTask(WBLite.instance, ()->top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "add").onCommand(
 								new QQCommandSender(e.getSender(), ge.getGroup().getId()),
 								WhiteListPlugin.instance.getCommand("wl"), "wl",
 								new String[] { "add",
@@ -180,7 +180,7 @@ public final class BotListener {
 				}else if(WBLite.wl!=null&&msg.startsWith(".验证") || msg.startsWith("。验证")) {
 					if(ServerUtil.isOnlineStorageMode()) {
 
-						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "confirm").onCommand(
+						top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "confirm").onCommand(
 								new QQCommandSender(e.getSender(), ge.getGroup().getId()),
 								WhiteListPlugin.instance.getCommand("wl"), "wl",
 								new String[] { "confirm",""+ge.getSender().getId() });
@@ -212,7 +212,7 @@ public final class BotListener {
 							bu.append("玩家UUID: "+wlp.uuid+" \n");
 						}
 						}else{ 
-							e.getGroup().sendMessage(new At(ge.getSender()).plus("白名单插件未安装，部分信息不可用!"));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("白名单插件未安装，部分信息不可用!"));
 							OfflinePlayer op=Bukkit.getOfflinePlayer(temp[1]);
 							bu.append("玩家UUID（可能不正确）: "+op.getUniqueId()+" \n");
 					        }
@@ -262,7 +262,7 @@ public final class BotListener {
 						+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "已经被管理员从本群删除,将删除他的白名单,并封禁!");
 
 				Bukkit.getScheduler().runTask(WBLite.instance, ()->{
-					CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
+					top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
 							new QQCommandSender(e.getGroup().get(e.getBot().getId()), e.getGroup().getId()),
 							WhiteListPlugin.instance.getCommand("wl"), "wl",
 							new String[] { "qban", e.getMember().getId() + "" });
@@ -274,7 +274,7 @@ public final class BotListener {
 					e.getGroup().sendMessage("玩家" + PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).name + "["
 							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "已经退群,将删除他的白名单!");
 					Bukkit.getScheduler().runTask(WBLite.instance, ()->{
-						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qremove").onCommand(
+						top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qremove").onCommand(
 								new QQCommandSender(e.getGroup().get(e.getBot().getId()), e.getGroup().getId()),
 								WhiteListPlugin.instance.getCommand("wl"), "wl",
 								new String[] { "qremove", e.getMember().getId() + "" });
@@ -287,7 +287,7 @@ public final class BotListener {
 							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).toOfflinePlayer().getName() + "["
 							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "已经退群,将删除他的白名单(已开启退群封禁)!");
 					Bukkit.getScheduler().runTask(WBLite.instance, ()->{
-						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
+						top.dsbbs2.whitelist.util.CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
 								new QQCommandSender(e.getGroup().get(e.getBot().getId()), e.getGroup().getId()),
 								WhiteListPlugin.instance.getCommand("wl"), "wl",
 								new String[] { "qban", e.getMember().getId() + "" });
