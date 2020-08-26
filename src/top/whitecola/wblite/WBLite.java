@@ -12,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.spigotmc.WatchdogThread;
 
 import net.mamoe.mirai.Bot;
@@ -22,12 +23,12 @@ import top.dsbbs2.common.config.SimpleConfig;
 import top.dsbbs2.common.file.FileUtils;
 import top.dsbbs2.common.lambda.INoThrowsRunnable;
 import top.dsbbs2.common.lambda.IThrowsRunnable;
-import top.dsbbs2.whitelist.commands.IChildCommand;
-import top.dsbbs2.whitelist.util.CommandUtil;
-import top.dsbbs2.whitelist.util.ListUtil;
+import top.dsbbs2.whitelist_shared.IChildCommand;
+import top.dsbbs2.whitelist_shared.CommandUtil;
+import top.dsbbs2.whitelist_shared.ListUtil;
 import top.dsbbs2.whitelist.util.PlayerUtil;
-import top.dsbbs2.whitelist.util.TabUtil;
-import top.dsbbs2.whitelist.util.VectorUtil;
+import top.dsbbs2.whitelist_shared.TabUtil;
+import top.dsbbs2.whitelist_shared.VectorUtil;
 import top.whitecola.wblite.commands.Reload;
 import top.whitecola.wblite.commands.SendMsg;
 import top.whitecola.wblite.listener.BlockListener;
@@ -50,6 +51,7 @@ public class WBLite extends JavaPlugin{
 		}
 	}};
 	public static WBLite instance;
+	public static Plugin wl;
 	public Bot bot;
 	public String awa = "";
 	private final CopyOnWriteArrayList<IThrowsRunnable> tasks=new CopyOnWriteArrayList<>();
@@ -82,6 +84,7 @@ public class WBLite extends JavaPlugin{
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
+		wl=Bukkit.getPluginManager().getPlugin("WhiteList");
 		taskThread.start();
 		if(config.getConfig().password==null||config.getConfig().password.isEmpty())
 		{
@@ -212,7 +215,7 @@ public class WBLite extends JavaPlugin{
 						return ListUtil.toList(argType.getSimpleName());
 					}else if(desc.equals("player"))
 					{
-						return PlayerUtil.getOfflinePlayersNameList();
+						return wl!=null?PlayerUtil.getOfflinePlayersNameList():new ArrayList<>();
 					}else if(desc.contains("/")){
 						return ListUtil.toList(desc.split("/"));
 					}else{
