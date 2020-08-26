@@ -8,7 +8,7 @@ import net.mamoe.mirai.message.GroupMessageEvent;
 import top.whitecola.wblite.WBLite;
 
 public class BotUtil {
-	public static void sendGroupMsgToServer(String msg,GroupMessageEvent ge) {
+	public static void sendGroupMsgToServer(String msg,GroupMessageEvent ge) { 
 
 		if(!WBLite.instance.config.getConfig().groupMsgSendToGame) {
 			return;
@@ -19,14 +19,14 @@ public class BotUtil {
 			}
 		}
 		StringBuilder sb = new StringBuilder();
-		sb.append("§l["+ge.getGroup().getId()+"]§r");
+		sb.append("搂l["+ge.getGroup().getId()+"]搂r");
 		if(ge.getSender().getPermission() == MemberPermission.OWNER) {
-			sb.append("§c[群主]§r");
+			sb.append("搂c[缇や富]搂r");
 		}else if(ge.getSender().getPermission() == MemberPermission.ADMINISTRATOR) {
-			sb.append("§6[管理员]§r");
+			sb.append("搂6[绠＄悊鍛榏搂r");
 		}
 		sb.append("{"+ge.getSenderName()+"} ");
-		sb.append("§a"+msg);
+		sb.append("搂a"+msg);
 		Bukkit.getScheduler().runTask(WBLite.instance, ()->{
 			Bukkit.getServer().broadcastMessage(sb.toString());
 		});
@@ -45,7 +45,7 @@ public class BotUtil {
 	}
 	
 	public static void sendEventMessageToGroup(String msg) {
-		GroupUtil.sendMsgToGroupAuto("[服务器事件]"+msg);
+		GroupUtil.sendMsgToGroupAuto("[鏈嶅姟鍣ㄤ簨浠禲"+msg);
 	}
 
 }
