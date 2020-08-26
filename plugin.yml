@@ -2,7 +2,8 @@ name: WBLite
 author: [white_cola,lvxinlei]
 version: 2.9.3
 main: top.whitecola.wblite.WBLite
-softdepend: [MiraiBukkit,WhiteList]
+depend: [MiraiBukkit]
+softdepend: [WhiteList]
 commands: 
   wb: 
    usage: /wb <childCmd> [args]...
