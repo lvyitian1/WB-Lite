@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import top.dsbbs2.whitelist.WhiteListPlugin;
 import top.dsbbs2.whitelist.config.struct.WhiteListConfig;
 import top.dsbbs2.whitelist.config.struct.WhiteListConfig.WLPlayer;
-import top.dsbbs2.whitelist.util.CommandUtil;
+import top.dsbbs2.whitelist_shared.CommandUtil;
 import top.dsbbs2.whitelist.util.PlayerUtil;
 import top.whitecola.wblite.WBLite;
 import top.whitecola.wlbot.util.BotUtil;
@@ -29,6 +29,8 @@ public class PlayerListener implements Listener {
 				if(WBLite.instance.config.getConfig().playerJoinServerGroupMsg) {
 					sendJoinOrLeaveServerGroupMsg(1, e.getPlayer());
 				}
+				if(WBLite.wl==null)
+					return;
 				WLPlayer wlp = PlayerUtil.getWLPlayerByName(e.getPlayer().getName());
 				if(wlp!=null&&wlp.QQ!=-1) {
 					if(!GroupUtil.isQQInGroupAuto(wlp.QQ)) {
@@ -58,39 +60,39 @@ public class PlayerListener implements Listener {
 			// TODO: handle exception
 		}
 		//type ==1 join
-		WhiteListConfig.WLPlayer wlp=PlayerUtil.getWLPlayerByName(p.getName());
+		Object wlp=WBLite.wl!=null?PlayerUtil.getWLPlayerByName(p.getName()):null;
 		if(wlp!=null)
 		{
-			if(wlp.QQ!=-1) {
+			if((WhiteListConfig.WLPlayer)wlp.QQ!=-1) {
 				if(type==1) {
-					GroupUtil.sendMsgToGroupAuto("Íæ¼Ò "+wlp.name+"["+wlp.QQ+"] ¼ÓÈëÁËÓÎÏ·.");
-					GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size())+" ÈË.");
+					GroupUtil.sendMsgToGroupAuto("ç©å®¶ "+p.getName()+"["+(WhiteListConfig.WLPlayer)wlp.QQ+"] åŠ å…¥äº†æ¸¸æˆ.");
+					GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size())+" äºº.");
 					return;
 				}else {
-					GroupUtil.sendMsgToGroupAuto("Íæ¼Ò "+wlp.name+"["+wlp.QQ+"] ÍË³öÁËÓÎÏ·.");
-					GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size())+" ÈË.");
+					GroupUtil.sendMsgToGroupAuto("ç©å®¶ "+p.getName()+"["+(WhiteListConfig.WLPlayer)wlp.QQ+"] é€€å‡ºäº†æ¸¸æˆ.");
+					GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size())+" äºº.");
 					return;
 				}
 			}else {
 				if(type==1) {
-					GroupUtil.sendMsgToGroupAuto("Íæ¼Ò "+p.getName()+" ¼ÓÈëÁËÓÎÏ·.");
-					GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size())+" ÈË.");
+					GroupUtil.sendMsgToGroupAuto("ç©å®¶ "+p.getName()+" åŠ å…¥äº†æ¸¸æˆ.");
+					GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size())+" äºº.");
 					return;
 				}else {
-					GroupUtil.sendMsgToGroupAuto("Íæ¼Ò "+p.getName()+" ÍË³öÁËÓÎÏ·.");
-					GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size())+" ÈË.");
+					GroupUtil.sendMsgToGroupAuto("ç©å®¶ "+p.getName()+" é€€å‡ºäº†æ¸¸æˆ.");
+					GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size())+" äºº.");
 					return;
 				}
 
 			}
 		}else {
 			if(type==1) {
-				GroupUtil.sendMsgToGroupAuto("Ã»ÓĞ°×Ãûµ¥µÄÍæ¼Ò "+p.getName()+" ¼ÓÈëÁËÓÎÏ·.");
-				GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size()+1)+" ÈË.");
+				GroupUtil.sendMsgToGroupAuto((WBLite.wl!=null?"æ²¡æœ‰ç™½åå•çš„":"")+"ç©å®¶ "+p.getName()+" åŠ å…¥äº†æ¸¸æˆ.");
+				GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size()+1)+" äºº.");
 				return;
 			}else {
-				GroupUtil.sendMsgToGroupAuto("Ã»ÓĞ°×Ãûµ¥µÄÍæ¼Ò "+p.getName()+" ÍË³öÁËÓÎÏ·.");
-				GroupUtil.sendMsgToGroupAuto("Ä¿Ç°·şÎñÆ÷ÈËÊı: "+(p.getServer().getOnlinePlayers().size()-1)+" ÈË.");
+				GroupUtil.sendMsgToGroupAuto((WBLite.wl!=null?"æ²¡æœ‰ç™½åå•çš„":"")+"ç©å®¶ "+p.getName()+" é€€å‡ºäº†æ¸¸æˆ.");
+				GroupUtil.sendMsgToGroupAuto("ç›®å‰æœåŠ¡å™¨äººæ•°: "+(p.getServer().getOnlinePlayers().size()-1)+" äºº.");
 				return;
 			}
 		}
@@ -119,17 +121,21 @@ public class PlayerListener implements Listener {
 		}
 		
 		WBLite.instance.addTask(()->{
-			BotUtil.sendEventMessageToGroup("Íæ¼Ò"+e.getEntity().getPlayer().getName()+"ÒÑËÀÍö , Ô­ÒòÎª "+e.getDeathMessage());
+			BotUtil.sendEventMessageToGroup("ç©å®¶"+e.getEntity().getPlayer().getName()+"å·²æ­»äº¡ , æ­»äº¡æ¶ˆæ¯: "+e.getDeathMessage());
+			if(WBLite.wl!=null){
 			WLPlayer wlp = PlayerUtil.getWLPlayerByName(e.getEntity().getName());
 			if(wlp!=null&&wlp.QQ!=-1) {
-				GroupUtil.sendMsgToGroupAuto("ËÀÍö×ø±êÒÑ¾­ÔÚ·şÎñÆ÷ÖĞ·¢¸ø"+wlp.name+"["+wlp.QQ+"]");
+				GroupUtil.sendMsgToGroupAuto("æ­»äº¡åæ ‡å·²ç»åœ¨æœåŠ¡å™¨ä¸­å‘ç»™"+wlp.name+"["+wlp.QQ+"]");
+			}
+			}else{
+				GroupUtil.sendMsgToGroupAuto("æ­»äº¡åæ ‡å·²ç»åœ¨æœåŠ¡å™¨ä¸­å‘ç»™"+e.getEntity().getName());
 			}
 		});
 		
 
 
 		Location loc = e.getEntity().getLocation();
-		e.getEntity().getPlayer().sendMessage("[WB]¡ìeÄãÉÏ´ÎËÀÍöÔÚÁË "+loc.getWorld().getName()+"ÊÀ½ç "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ());
+		e.getEntity().getPlayer().sendMessage("[WB]Â§eä½ ä¸Šæ¬¡æ­»äº¡åœ¨äº† "+loc.getWorld().getName()+"ä¸–ç•Œ "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ());
 	}
 
 
