@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.Optional;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import top.dsbbs2.common.com.google.gson.Gson;
+import top.dsbbs2.common.com.google.gson.GsonBuilder;
 
 public class SimpleConfig<T> implements IConfig<T>
 {
@@ -56,7 +56,6 @@ public class SimpleConfig<T> implements IConfig<T>
   @Override
   public void loadConfig() throws IOException
   {
-	  //try {
     this.autoCreateNewFile();
     try (FileInputStream i = new FileInputStream(this.conf)) {
       final byte[] buf = new byte[i.available()];
@@ -66,10 +65,6 @@ public class SimpleConfig<T> implements IConfig<T>
         this.initConfig();
       }
     }
-	 // }catch (Throwable e) {
-	//	e.printStackTrace();
-	//	System.out.println("加载配置文件时出现了错误! 请检查, 如果实在无法检查出错误,可以尝试删除配置文件重新生成.");
-	//}
   }
 
   public T getDefaultConfig()
