@@ -376,6 +376,11 @@ public boolean equals(Object o)
 	}
 	public void sendMessageToQQ(String msg)
 	{
+		if(WBLite.instance.config.getConfig().removeColorText)
+		{
+			for(org.bukkit.ChatColor i : org.bukkit.ChatColor.values())
+				msg=msg.replace(i.toString(),"");
+		}
 		if(group!=-1)
 			  WBLite.instance.bot.getGroup(this.group).sendMessage(new At(WBLite.instance.bot.getGroup(this.group).get(this.QQ.getId())).plus(msg));
 		else
