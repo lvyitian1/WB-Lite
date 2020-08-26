@@ -43,7 +43,7 @@ public class WBLite extends JavaPlugin{
 	}
 	public IConfig<Config> config = new SimpleConfig<Config>(getDataFolder().getAbsolutePath().toString()+File.separator+"config.json","UTF8",Config.class) {{
 		INoThrowsRunnable.invoke(this::loadConfig);
-		System.out.println("ÒÑ¾­³¢ÊÔ¼ÓÔØÅäÖÃÎÄ¼ş,Èç¹û³öÏÖnullPointerException,ºÜ¿ÉÄÜÊÇÅäÖÃÎÄ¼şÒò¸ü¸Ä¶øËğ»µ,»òÕßÓĞÑ¡ÏîÃ»ÓĞÌîĞ´!");
+		System.out.println("å·²ç»å°è¯•åŠ è½½é…ç½®æ–‡ä»¶,å¦‚æœå‡ºç°nullPointerException,å¾ˆå¯èƒ½æ˜¯é…ç½®æ–‡ä»¶å› æ›´æ”¹è€ŒæŸå,æˆ–è€…æœ‰é€‰é¡¹æ²¡æœ‰å¡«å†™!");
 		if (!this.g.toJson(this.getConfig()).trim().equals(FileUtils.readTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"config.json"), StandardCharsets.UTF_8).trim())) {
 			FileUtils.writeTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"config.json.bak"),FileUtils.readTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"config.json"), StandardCharsets.UTF_8),StandardCharsets.UTF_8,false);
 			INoThrowsRunnable.invoke(this::saveConfig);
@@ -85,9 +85,14 @@ public class WBLite extends JavaPlugin{
 		taskThread.start();
 		if(config.getConfig().password==null||config.getConfig().password.isEmpty())
 		{
-			getLogger().severe("ÇëÏÈÌîĞ´"+((SimpleConfig<?>)this.config).conf.getAbsolutePath().toString()+"ÖĞµÄqq(ÕËºÅ)ºÍpassword(ÃÜÂë)£¡ÔÙÖØÔØ±¾²å¼ş");
+			try {
+			getLogger().severe("è¯·å…ˆå¡«å†™"+((SimpleConfig<?>)this.config).conf.getAbsolutePath().toString()+"ä¸­çš„qq(è´¦å·)å’Œpassword(å¯†ç )ï¼å†é‡è½½æœ¬æ’ä»¶");
 			this.setEnabled(false);
 			return;
+		       }finally {
+			 taskThread.stop();
+		       }
+			
 		}
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
@@ -119,19 +124,19 @@ public class WBLite extends JavaPlugin{
 			if(!config.getConfig().robotShowLogMsgDebug) {
 				noBotLog();
 			}
-			System.out.println("¡ìb»úÆ÷ÈËÅäÖÃÎÄ¼şÒÑ¾ÍĞ÷.");		
+			System.out.println("Â§bæœºå™¨äººé…ç½®æ–‡ä»¶å·²å°±ç»ª.");		
 		}});
 		
-		System.out.println("¡ìbWB¾«¼ò°æ");
-		if("ÄãºÃ,·´±àÒëÕß!".equals(awa)) {
-			System.out.println("·´±àÒë¸ÉÂïawa");
+		System.out.println("Â§bWBç²¾ç®€ç‰ˆ");
+		if("ä½ å¥½,åç¼–è¯‘è€…!".equals(awa)) {
+			System.out.println("åç¼–è¯‘å¹²å˜›awa");
 		}
 		EventUtils.registerEvents(new BotListener());
 		bot.login();
 		}finally {
 			temp.stop();
 		}
-		System.out.println("¡ìb»úÆ÷ÈËÒÑ¾­³É¹¦Æô¶¯.");
+		System.out.println("Â§bæœºå™¨äººå·²ç»æˆåŠŸå¯åŠ¨.");
 		
 	}
 	public void initCommands() {
@@ -158,11 +163,11 @@ public class WBLite extends JavaPlugin{
 			if(c==null)
 			{
 
-				sender.sendMessage("ÃüÁî "+args[0]+" ²»´æÔÚ");
+				sender.sendMessage("å‘½ä»¤ "+args[0]+" ä¸å­˜åœ¨");
 			}else {
 				if(!c.getPermission().trim().equals("") && !sender.hasPermission(c.getPermission()))
 				{
-					sender.sendMessage("ÄãÃ»ÓĞÈ¨ÏŞÕâÃ´×ö,ÄãĞèÒª"+c.getPermission()+"È¨ÏŞ!");
+					sender.sendMessage("ä½ æ²¡æœ‰æƒé™è¿™ä¹ˆåš,ä½ éœ€è¦"+c.getPermission()+"æƒé™!");
 					return true;
 				}
 				if(!c.onCommand(sender, command, label, args))
