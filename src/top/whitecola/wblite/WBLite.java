@@ -85,6 +85,8 @@ public class WBLite extends JavaPlugin{
 	@Override
 	public void onEnable() {
 		wl=Bukkit.getPluginManager().getPlugin("WhiteList");
+		if(wl==null)
+			Bukkit.getServer().getConsoleSender().sendMessage("§e未安装白名单插件，相关功能将不可用!");
 		taskThread.start();
 		if(config.getConfig().password==null||config.getConfig().password.isEmpty())
 		{
