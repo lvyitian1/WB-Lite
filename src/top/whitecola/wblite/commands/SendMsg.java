@@ -7,9 +7,9 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import net.mamoe.mirai.contact.ContactList;
 import net.mamoe.mirai.contact.Group;
-import top.dsbbs2.whitelist.commands.IChildCommand;
-import top.dsbbs2.whitelist.util.CommandUtil;
-import top.dsbbs2.whitelist.util.VectorUtil;
+import top.dsbbs2.whitelist_shared.IChildCommand;
+import top.dsbbs2.whitelist_shared.CommandUtil;
+import top.dsbbs2.whitelist_shared.VectorUtil;
 import top.whitecola.wblite.WBLite;
 import top.whitecola.wlbot.util.GroupUtil;
 
@@ -18,7 +18,7 @@ public class SendMsg implements IChildCommand{
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		if(arg3.length<2) {
-			arg0.sendMessage("ÇëÌîÐ´Òª·¢ËÍµÄÄÚÈÝ");
+			arg0.sendMessage("è¯·å¡«å†™è¦å‘é€çš„å†…å®¹");
 			return false;
 		}
 		if(arg3.length==2) {
@@ -26,14 +26,14 @@ public class SendMsg implements IChildCommand{
 			return true;
 		}else if(arg3.length==3) {
 			if(!CommandUtil.ArgumentUtil.isLong(arg3[2])) {
-				arg0.sendMessage("ÈººÅ±ØÐëÊÇÊý×Ö");
+				arg0.sendMessage("ç¾¤å·å¿…é¡»æ˜¯æ•°å­—");
 				return false;
 			}
 			try {
 			WBLite.instance.bot.getGroup(Long.parseLong(arg3[2])).sendMessage(arg3[1]);
 			return true;
 			}catch (NoSuchElementException e) {
-				arg0.sendMessage("»úÆ÷ÈËÃ»ÓÐ¼ÓÈº"+arg3[2]+",ÇëÏÈÈÃ»úÆ÷ÈË¼ÓÈº");
+				arg0.sendMessage("æœºå™¨äººæ²¡æœ‰åŠ ç¾¤"+arg3[2]+",è¯·å…ˆè®©æœºå™¨äººåŠ ç¾¤");
 				return true;
 			}
 		}
@@ -82,6 +82,6 @@ public class SendMsg implements IChildCommand{
     @NotNull
     @Override
     public String getDescription(){
-        return "ÈÃ»úÆ÷ÈË·¢ÏûÏ¢µ½Ö¸¶¨Èº(²»Ö¸¶¨¾ÍÊÇËùÓÐÈº)";
+        return "è®©æœºå™¨äººå‘æ¶ˆæ¯åˆ°æŒ‡å®šç¾¤(ä¸æŒ‡å®šå°±æ˜¯æ‰€æœ‰ç¾¤)";
     }
 }
