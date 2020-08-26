@@ -41,5 +41,8 @@ public class Config {
 	public String tip4 = "以上(msgSynchronousFunction以下)配置的前提是 msgSynchronousFunction 为true";
 	public boolean sendDieMsgToServerWhenPlayerDie = true;
 	public boolean removeColorText = false;
+        public boolean forbidColorInGroupMsg = false;
+        public boolean forbidNewLineInGroupMsg = true;
+        
 	//public boolean noWhitelistFunction = false;
 }
