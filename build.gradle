@@ -29,8 +29,18 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:20.0.0'
     
 }
-sourceSets {
+/*sourceSets {
     main.java.srcDir 'src/'
+}*/
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
 }
 sourceCompatibility = 1.8
 uploadArchives {
