@@ -56,7 +56,7 @@ public class SimpleConfig<T> implements IConfig<T>
   @Override
   public void loadConfig() throws IOException
   {
-	  try {
+	  //try {
     this.autoCreateNewFile();
     try (FileInputStream i = new FileInputStream(this.conf)) {
       final byte[] buf = new byte[i.available()];
@@ -66,10 +66,10 @@ public class SimpleConfig<T> implements IConfig<T>
         this.initConfig();
       }
     }
-	  }catch (Throwable e) {
-		e.printStackTrace();
-		System.out.println("¼ÓÔØÅäÖÃÎÄ¼şÊ±³öÏÖÁË´íÎó! Çë¼ì²é, Èç¹ûÊµÔÚÎŞ·¨¼ì²é³ö´íÎó,¿ÉÒÔ³¢ÊÔÉ¾³ıÅäÖÃÎÄ¼şÖØĞÂÉú³É.");
-	}
+	 // }catch (Throwable e) {
+	//	e.printStackTrace();
+	//	System.out.println("åŠ è½½é…ç½®æ–‡ä»¶æ—¶å‡ºç°äº†é”™è¯¯! è¯·æ£€æŸ¥, å¦‚æœå®åœ¨æ— æ³•æ£€æŸ¥å‡ºé”™è¯¯,å¯ä»¥å°è¯•åˆ é™¤é…ç½®æ–‡ä»¶é‡æ–°ç”Ÿæˆ.");
+	//}
   }
 
   public T getDefaultConfig()
