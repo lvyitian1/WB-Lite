@@ -1,4 +1,4 @@
-/*buildscript {
+buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
@@ -7,9 +7,7 @@
           url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
         }
     }
-}*/
-group = 'top.whitecola.wblite'
-version = '2.9.3'
+}
 plugins {
     id "java"
     //id "eclipse"
@@ -22,6 +20,8 @@ repositories{
     url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
   }
 }
+group = 'top.whitecola.wblite'
+version = '2.9.3'
 dependencies {
     compileOnly 'net.mamoe:mirai-core-qqandroid:1.0.3'
     compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
