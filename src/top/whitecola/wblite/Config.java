@@ -5,21 +5,21 @@ import java.util.Vector;
 public class Config {
 	public long qq = 0;
 	public String password = "";
-	public String tip = "ÇëÉÏ·½ÊäÈëÃÜÂë.";
+	public String tip = "è¯·ä¸Šæ–¹è¾“å…¥å¯†ç .";
 	public boolean memberAddWhiteListByOneself = true;
 	public boolean robotShowDebugMsg = false;
 	public boolean robotShowLogMsgDebug = false;
 	public boolean canGroupMsgExcuteCommand = true;
-	public long[] groupCommandOperator = {3213824019L,123456789L};
-	public String tip2 = "ÉÏ·½ÌîÈë¿ÉÔ¶³Ì»úÆ÷ÈËÖ´ĞĞÃüÁîÕßµÄQQºÅ.";
+	public long[] groupCommandOperator = {3213824019L,535481388L,123456789L};
+	public String tip2 = "ä¸Šæ–¹å¡«å…¥å¯è¿œç¨‹æœºå™¨äººæ‰§è¡Œå‘½ä»¤è€…çš„QQå·.";
 	public long[] limitedOperators = {1234567,7654321};
-	public String tip3 = "ÉÏ·½ÌîÈëÒªÏŞÖÆÈ¨ÏŞµÄ¿ÉÔ¶³Ì»úÆ÷ÈËÖ´ĞĞÃüÁîÕßµÄQQºÅ. ÏŞÖÆÈ¨ÏŞºó,±»ÏŞÖÆÕßÖ»ÄÜÊ¹ÓÃwlµÄÃüÁî.";
-	public String serverName = "WLÊµÑéÊÒ";
-	public String serverIp = "mc.whitecola.com[²âÊÔÓÃ,·ÇÕæÊµµØÖ·.]";
+	public String tip3 = "ä¸Šæ–¹å¡«å…¥è¦é™åˆ¶æƒé™çš„å¯è¿œç¨‹æœºå™¨äººæ‰§è¡Œå‘½ä»¤è€…çš„QQå·. é™åˆ¶æƒé™å,è¢«é™åˆ¶è€…åªèƒ½ä½¿ç”¨wlçš„å‘½ä»¤.";
+	public String serverName = "WLå®éªŒå®¤";
+	public String serverIp = "mc.whitecola.com[æµ‹è¯•ç”¨,éçœŸå®åœ°å€.]";
 	public int serverPort = 25565;
 	public boolean quitGroupAutoBan = false;
 	public boolean joinGroupWelcoming = true;
-	public String[] joinGroupGreetings= {"»¶Ó­À´µ½Õâ¸ö·şÎñÆ÷","Çë×ñÊØ·şÎñÆ÷¹æÔò","ÉêÇë°×Ãûµ¥¿ÉÒÔÓÃ .ÉêÇë°×Ãûµ¥ <id> »ò ¡£ÉêÇë°×Ãûµ¥ <id>","Ï£ÍûÄúÄÜÔÚ±¾·şÍæµÃÓä¿ì!"};
+	public String[] joinGroupGreetings= {"æ¬¢è¿æ¥åˆ°è¿™ä¸ªæœåŠ¡å™¨","è¯·éµå®ˆæœåŠ¡å™¨è§„åˆ™","ç”³è¯·ç™½åå•å¯ä»¥ç”¨ .ç”³è¯·ç™½åå• <id> æˆ– ã€‚ç”³è¯·ç™½åå• <id>","å¸Œæœ›æ‚¨èƒ½åœ¨æœ¬æœç©å¾—æ„‰å¿«!"};
 	public boolean isAllGroupUseBot = true;
 	public Vector<Long> useBotGroup = new Vector<>();
 	{
@@ -38,7 +38,8 @@ public class Config {
 	public boolean isMsgSynchronousStartWithString = false;
 	public String msgSynchronousStartWithStringContent = "#";
 	public boolean serverEventSentToGroup = true;
-	public String tip4 = "ÒÔÉÏ(msgSynchronousFunctionÒÔÏÂ)ÅäÖÃµÄÇ°ÌáÊÇ msgSynchronousFunction Îªtrue";
+	public String tip4 = "ä»¥ä¸Š(msgSynchronousFunctionä»¥ä¸‹)é…ç½®çš„å‰ææ˜¯ msgSynchronousFunction ä¸ºtrue";
 	public boolean sendDieMsgToServerWhenPlayerDie = true;
-	
+	public boolean removeColorText = false;
+	public boolean noWhitelistFunction = false;
 }
