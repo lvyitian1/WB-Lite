@@ -9,6 +9,9 @@ buildscript {
         maven {
           url "https://hub.spigotmc.org/nexus/content/repositories/central"
         }
+        maven {
+          url "https://hub.spigotmc.org/nexus/content/repositories/public"
+        }
     }
 }
 plugins {
@@ -24,6 +27,9 @@ repositories{
   }
   maven {
     url "https://hub.spigotmc.org/nexus/content/repositories/central"
+  }
+  maven {
+    url "https://hub.spigotmc.org/nexus/content/repositories/public"
   }
 }
 group = 'top.whitecola.wblite'
