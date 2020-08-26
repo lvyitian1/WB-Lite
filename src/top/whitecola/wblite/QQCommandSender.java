@@ -392,11 +392,11 @@ public boolean equals(Object o)
 	public void sendMessage(String[] arg0) {
 		for(String i : arg0)
 			try {
-				sendMessageToQQ(i);
+				sendMessage(i);
 				}catch(Throwable e) {throw new RuntimeException(e);}
 	}
 
-	@Override
+	//@Override
 	public Spigot spigot() {
 		return new Spigot();
 	}
@@ -411,7 +411,7 @@ public boolean equals(Object o)
 	@Override
 	public void acceptConversationInput(String arg0) {
 		try {
-			sendMessageToQQ(arg0);
+			sendMessage(arg0);
 			}catch(Throwable e) {throw new RuntimeException(e);}
 	}
 	@Override
@@ -425,7 +425,7 @@ public boolean equals(Object o)
 	@Override
 	public void sendRawMessage(String arg0) {
 		try {
-			sendMessageToQQ(arg0);
+			sendMessage(arg0);
 		}catch(Throwable e) {throw new RuntimeException(e);}
 		//System.out.println("receive: "+arg0);
 	}
