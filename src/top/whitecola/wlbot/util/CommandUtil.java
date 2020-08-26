@@ -10,9 +10,10 @@ import org.bukkit.entity.Player;
 
 public class CommandUtil {
 	public static double getDis(Location a, Location b) {
-        double i = Math.pow((a.getBlockX() - b.getBlockX()), 2);
-        double j = Math.pow((a.getBlockZ() - b.getBlockZ()), 2);
-        return Math.sqrt(i + j);
+        double i = Math.pow(a.getX() - b.getX(), 2);
+        double j = Math.pow(a.getZ() - b.getZ(), 2);
+        double k = Math.pow(a.getY() - b.getY(), 2);
+        return Math.sqrt(i + j + k);
     }
 	
 	public static List<Player> getNearlyPlayer(double dis,Entity en){
