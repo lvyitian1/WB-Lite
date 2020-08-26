@@ -19,7 +19,7 @@ import net.mamoe.mirai.message.MessageEvent;
 import net.mamoe.mirai.message.data.At;
 import top.dsbbs2.whitelist.WhiteListPlugin;
 import top.dsbbs2.whitelist.config.struct.WhiteListConfig.WLPlayer;
-import top.dsbbs2.whitelist.util.CommandUtil;
+import top.dsbbs2.whitelist_shared.CommandUtil;
 import top.dsbbs2.whitelist.util.PlayerUtil;
 import top.dsbbs2.whitelist.util.ServerUtil;
 import top.whitecola.wlbot.util.BotUtil;
@@ -47,20 +47,20 @@ public final class BotListener {
 					}
 				}
 
-				if((msg.startsWith(".ÉêÇë°×Ãûµ¥") || msg.startsWith("¡£ÉêÇë°×Ãûµ¥"))&&WBLite.instance.config.getConfig().memberAddWhiteListByOneself) {
+				if(WBLite.wl!=null&&(msg.startsWith(".ç”³è¯·ç™½åå•") || msg.startsWith("ã€‚ç”³è¯·ç™½åå•"))&&WBLite.instance.config.getConfig().memberAddWhiteListByOneself) {
 					
 					String[] temp = msg.split(" ");
 					if (temp.length >= 2) {
 						if (PlayerUtil.isInWhiteList(temp[1])) {
 
 							WLPlayer wlp = PlayerUtil.getWLPlayerByName(temp[1]);
-							ge.getGroup().sendMessage(new At(ge.getSender()).plus("¸ÃIDÒÑ±»" + wlp.QQ + "°ó¶¨ !"));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("è¯¥IDå·²è¢«" + wlp.QQ + "ç»‘å®š !"));
 							return;
 						}
 
 						if (!WBLite.instance.config.getConfig().allowAddingWhitelistBeforeChangingNameInGroup && !ge.getSender().getNameCard().toLowerCase(Locale.ENGLISH).contains(temp[1].toLowerCase(Locale.ENGLISH))) {
 							ge.getGroup()
-							.sendMessage(new At(ge.getSender()).plus("ÄúĞèÒªÔÚÉêÇë°×Ãûµ¥Ö®Ç°,ÔÚÄúµÄÈºÃûÆ¬ÉÏ¼ÓÉÏÄúµÄid£¡"));
+							.sendMessage(new At(ge.getSender()).plus("æ‚¨éœ€è¦åœ¨ç”³è¯·ç™½åå•ä¹‹å‰,åœ¨æ‚¨çš„ç¾¤åç‰‡ä¸ŠåŠ ä¸Šæ‚¨çš„idï¼"));
 							return;
 						}
 						String name = temp[1];
@@ -75,15 +75,15 @@ public final class BotListener {
 					}
 
 
-				}else if(msg.startsWith(".Ö´ĞĞ") || msg.startsWith("¡£Ö´ĞĞ")) {
+				}else if(msg.startsWith(".æ‰§è¡Œ") || msg.startsWith("ã€‚æ‰§è¡Œ")) {
 
 					if (WBLite.instance.config.getConfig().canGroupMsgExcuteCommand ) {
 						if(!containsLong(WBLite.instance.config.getConfig().groupCommandOperator, ge.getSender().getId())) {
-							ge.getGroup().sendMessage(new At(ge.getSender()).plus("ÄãÃ»ÓĞÈ¨ÏŞ!"));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("ä½ æ²¡æœ‰æƒé™!"));
 							return;
 						}
 						if (msg.length() <= 4 || !msg.contains(" ")) {
-							((GroupMessageEvent) e).getGroup().sendMessage("ÕıÈ·ÓÃ·¨:.(¡£)Ö´ĞĞ <ÃüÁî> (×¢Òâ¿Õ¸ñ)");
+							((GroupMessageEvent) e).getGroup().sendMessage("æ­£ç¡®ç”¨æ³•:.(ã€‚)æ‰§è¡Œ <å‘½ä»¤> (æ³¨æ„ç©ºæ ¼)");
 							return;
 						}
 
@@ -92,7 +92,7 @@ public final class BotListener {
 									&& !msg.split(" ")[1].equalsIgnoreCase("whitelist:wl")) {
 								((GroupMessageEvent) e).getGroup()
 								.sendMessage(new At(((GroupMessageEvent) e).getSender())
-										.plus("²»ÔÊĞíµÄÃüÁî£¬ÄúµÄÔ¶³ÌÈ¨ÏŞÒÑ±»ÏŞÖÆ,ÄúÖ»¿ÉÒÔÊ¹ÓÃ°×Ãûµ¥²å¼ş(wl)µÄÃüÁî!"));
+										.plus("ä¸å…è®¸çš„å‘½ä»¤ï¼Œæ‚¨çš„è¿œç¨‹æƒé™å·²è¢«é™åˆ¶,æ‚¨åªå¯ä»¥ä½¿ç”¨ç™½åå•æ’ä»¶(wl)çš„å‘½ä»¤!"));
 								return;
 							}
 						}
@@ -105,9 +105,9 @@ public final class BotListener {
 										msg.substring(4)));
 						return;
 					} else {
-						ge.getGroup().sendMessage(new At(ge.getSender()).plus("Ô¶³ÌÖ´ĞĞÃüÁî¹¦ÄÜÃ»ÓĞ¿ªÆô."));
+						ge.getGroup().sendMessage(new At(ge.getSender()).plus("è¿œç¨‹æ‰§è¡Œå‘½ä»¤åŠŸèƒ½æ²¡æœ‰å¼€å¯."));
 					}
-				}else if(msg.startsWith(".×´Ì¬") || msg.startsWith("¡£×´Ì¬")){
+				}else if(msg.startsWith(".çŠ¶æ€") || msg.startsWith("ã€‚çŠ¶æ€")){
 
 
 
@@ -124,54 +124,60 @@ public final class BotListener {
 						//						re.getFavicon().substring("data:image/png;base64,".length()))))
 						//				: new MessageChainBuilder().build();
 						StringBuilder bu = new StringBuilder(/*"\n"*/);
-						//bu.append("·şÎñÆ÷Ãû: " + Bukkit.getServerName());
+						//bu.append("æœåŠ¡å™¨å: " + Bukkit.getServerName());
 						//bu.append("\n");
-						bu.append("·şÎñÆ÷Ãû : "+ WBLite.instance.config.getConfig().serverName);
+						bu.append("æœåŠ¡å™¨å : "+ WBLite.instance.config.getConfig().serverName);
 						bu.append("\n");
-						bu.append("·şÎñÆ÷µØÖ·: " + WBLite.instance.config.getConfig().serverIp);
+						bu.append("æœåŠ¡å™¨åœ°å€: " + WBLite.instance.config.getConfig().serverIp);
 						bu.append("\n");
-						bu.append("·şÎñÆ÷¶Ë¿Ú: " + WBLite.instance.config.getConfig().serverPort);
+						bu.append("æœåŠ¡å™¨ç«¯å£: " + WBLite.instance.config.getConfig().serverPort);
 						bu.append("\n");
-						//bu.append("·şÎñÆ÷Motd: " + re.getDescription().getText());
+						//bu.append("æœåŠ¡å™¨Motd: " + re.getDescription().getText());
 						//bu.append("\n");
 
-						bu.append("·şÎñÆ÷°æ±¾: " + Bukkit.getVersion());
+						bu.append("æœåŠ¡å™¨ç‰ˆæœ¬: " + Bukkit.getVersion());
 						bu.append("\n");
-						//bu.append("·şÎñÆ÷Ğ­Òé°æ±¾ºÅ: " + re.getVersion().getProtocol());
+						//bu.append("æœåŠ¡å™¨åè®®ç‰ˆæœ¬å·: " + re.getVersion().getProtocol());
 						//bu.append("\n");
-						//bu.append("ÑÓ³Ù: " + re.getTime() + "ms");
+						//bu.append("å»¶è¿Ÿ: " + re.getTime() + "ms");
 						//bu.append("\n");
 						try {
-						bu.append("·şÎñÆ÷µ±Ç°tps: " + Bukkit.getTPS()[0]);
+						bu.append("æœåŠ¡å™¨å½“å‰tps: " + Bukkit.getTPS()[0]);
 						bu.append("\n");
 						}catch (Throwable e2) {}
-						bu.append("ÈËÊı: " + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
+						bu.append("äººæ•°: " + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
 						bu.append("\n");
+						if(WBLite.wl!=null)
 						bu.append(
-								"ÔÚÏßÍæ¼ÒÁĞ±í: " + Arrays.toString(Bukkit.getOnlinePlayers().stream()
+								"åœ¨çº¿ç©å®¶åˆ—è¡¨: " + Arrays.toString(Bukkit.getOnlinePlayers().stream()
 										.map(i -> i.getName() + "[" + Optional
 												.ofNullable(ServerUtil.isOnlineStorageMode()
 														? PlayerUtil.getWLPlayerByUUID(
 																i.getUniqueId())
 																: PlayerUtil.getWLPlayerByName(i.getName()))
-										.map(i2 -> i2.QQ + "").orElse("Î´°ó¶¨") + "]")
+										.map(i2 -> i2.QQ + "").orElse("æœªç»‘å®š") + "]")
+										.toArray(String[]::new)).replace(",", ",\n")
+								);
+						else bu.append(
+								"åœ¨çº¿ç©å®¶åˆ—è¡¨: " + Arrays.toString(Bukkit.getOnlinePlayers().stream()
+										.map(i -> i.getName())
 										.toArray(String[]::new)).replace(",", ",\n")
 								);
 						bu.append("\n");
-						bu.append("¼ÓÔØÊÀ½çÁĞ±í: "+Arrays.toString(Bukkit.getWorlds().parallelStream().map(World::getName).toArray(String[]::new)));
+						bu.append("åŠ è½½ä¸–ç•Œåˆ—è¡¨: "+Arrays.toString(Bukkit.getWorlds().parallelStream().map(World::getName).toArray(String[]::new)));
 						bu.append("\n");
-						bu.append("·şÎñÆ÷µÄ°×Ãûµ¥ÏµÍ³ÓÉ ¸üºÃµÄ°×Ãûµ¥²å¼ş(wl) ½øĞĞÊØ»¤ ");
+						bu.append("æœåŠ¡å™¨çš„ç™½åå•ç³»ç»Ÿç”± æ›´å¥½çš„ç™½åå•æ’ä»¶(wl) è¿›è¡Œå®ˆæŠ¤ ");
 						ge.getGroup().sendMessage(/*temp.plus(*/bu.toString()/*)*/);
 					} catch (Throwable exc) {
-						ge.getGroup().sendMessage("ÔÚ»ñÈ¡·şÎñÆ÷»ù±¾ĞÅÏ¢µÄ¹ı³ÌÖĞ³öÏÖÁËÎ´Ô¤ÁÏµ½µÄÒì³£ ");
-						System.out.println("¡ìeÄúÊÇ·ñÃ»ÓĞÅäÖÃ·şÎñÆ÷µØÖ·? ×¢Òâ:Õâ²»ÊÇbug,ÇëÎğ·´À¡!");
-						ge.getGroup().sendMessage("ÊÇ·ñÃ»ÓĞÅäÖÃ·şÎñÆ÷µØÖ·?");
+						ge.getGroup().sendMessage("åœ¨è·å–æœåŠ¡å™¨åŸºæœ¬ä¿¡æ¯çš„è¿‡ç¨‹ä¸­å‡ºç°äº†æœªé¢„æ–™åˆ°çš„å¼‚å¸¸ ");
+						System.out.println("Â§eæ‚¨æ˜¯å¦æ²¡æœ‰é…ç½®æœåŠ¡å™¨åœ°å€? æ³¨æ„:è¿™ä¸æ˜¯bug,è¯·å‹¿åé¦ˆ!");
+						ge.getGroup().sendMessage("æ˜¯å¦æ²¡æœ‰é…ç½®æœåŠ¡å™¨åœ°å€?");
 						exc.printStackTrace();
-						System.out.println("¡ìeÄúÊÇ·ñÃ»ÓĞÅäÖÃ·şÎñÆ÷µØÖ·? ×¢Òâ:Õâ²»ÊÇbug,ÇëÎğ·´À¡!");
+						System.out.println("Â§eæ‚¨æ˜¯å¦æ²¡æœ‰é…ç½®æœåŠ¡å™¨åœ°å€? æ³¨æ„:è¿™ä¸æ˜¯bug,è¯·å‹¿åé¦ˆ!");
 					}
 
 
-				}else if(msg.startsWith(".ÑéÖ¤") || msg.startsWith("¡£ÑéÖ¤")) {
+				}else if(WBLite.wl!=null&&msg.startsWith(".éªŒè¯") || msg.startsWith("ã€‚éªŒè¯")) {
 					if(ServerUtil.isOnlineStorageMode()) {
 
 						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "confirm").onCommand(
@@ -180,48 +186,56 @@ public final class BotListener {
 								new String[] { "confirm",""+ge.getSender().getId() });
 
 					}else {
-						ge.getGroup().sendMessage(new At(ge.getSender()).plus("·şÎñÆ÷Ã»ÓĞ¿ªÆô´¢´æUUIDÄ£Ê½ , ÎŞĞèÑéÖ¤."));
+						ge.getGroup().sendMessage(new At(ge.getSender()).plus("æœåŠ¡å™¨æ²¡æœ‰å¼€å¯å‚¨å­˜UUIDæ¨¡å¼ , æ— éœ€éªŒè¯."));
 					}
-				}else if(msg.startsWith(".²éÑ¯") || msg.startsWith("¡£²éÑ¯")|| msg.startsWith(".whois") || msg.startsWith("¡£whois")) {
+				}else if(msg.startsWith(".æŸ¥è¯¢") || msg.startsWith("ã€‚æŸ¥è¯¢")|| msg.startsWith(".whois") || msg.startsWith("ã€‚whois")) {
 					String[] temp = msg.split(" ");
 					if (temp.length == 2) {
 						if(temp[1].equalsIgnoreCase("white_cola")||temp[1].equalsIgnoreCase("lvxinlei")||temp[1].equalsIgnoreCase("Chloe__owo")) {
-							ge.getGroup().sendMessage("Äú²éÑ¯µÄID"+temp[1]+"ÎªWL(°×Ãûµ¥²å¼ş)µÄ¿ª·¢ÕßµÄÕı°æID!");
+							ge.getGroup().sendMessage("æ‚¨æŸ¥è¯¢çš„ID"+temp[1]+"ä¸ºWL(ç™½åå•æ’ä»¶)çš„å¼€å‘è€…çš„æ­£ç‰ˆID!");
 						}
+						StringBuilder bu = new StringBuilder("\n");
+						if(WBLite.wl!=null)
+						{
 						WLPlayer wlp = PlayerUtil.getWLPlayerByName(temp[1]);
 						if(wlp==null) {
-							ge.getGroup().sendMessage(new At(ge.getSender()).plus("Ã»ÓĞÔÚ°×Ãûµ¥Êı¾İÖĞ²éÑ¯µ½´ËÈË,Ëû(Ëı)ÊÇ·ñ»¹ÓĞÃ»°ó¶¨?"));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("æ²¡æœ‰åœ¨ç™½åå•æ•°æ®ä¸­æŸ¥è¯¢åˆ°æ­¤äºº,ä»–(å¥¹)æ˜¯å¦è¿˜æœ‰æ²¡ç»‘å®š?"));
 							return;
 						}
 						if(wlp.QQ==-1) {
-							ge.getGroup().sendMessage(new At(ge.getSender()).plus("È·ÊµÔÚ°×Ãûµ¥Êı¾İÖĞ²éµ½ÁËËû,µ«ÊÇÃ»ÓĞ²éµ½¶ÔÓ¦QQ.(ÔÚÌí¼Ó¸Ã³ÉÔ±°×Ãûµ¥Ê±,²¢Ã»ÓĞÌí¼ÓQQ)"));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("ç¡®å®åœ¨ç™½åå•æ•°æ®ä¸­æŸ¥åˆ°äº†ä»–,ä½†æ˜¯æ²¡æœ‰æŸ¥åˆ°å¯¹åº”QQ.(åœ¨æ·»åŠ è¯¥æˆå‘˜ç™½åå•æ—¶,å¹¶æ²¡æœ‰æ·»åŠ QQ)"));
 							return;
 						}
-						ge.getGroup().sendMessage(new At(ge.getSender()).plus("¸ÃÍæ¼ÒÎª"+wlp.QQ));
+						ge.getGroup().sendMessage(new At(ge.getSender()).plus("è¯¥ç©å®¶ä¸º"+wlp.QQ));
 						ge.getGroup().sendMessage(new At(ge.getGroup().get(wlp.QQ)));
-						StringBuilder bu = new StringBuilder("\n");
 						if(ServerUtil.isOnlineStorageMode()&&wlp.uuid!=null) {
-							bu.append("Íæ¼ÒUUID: "+wlp.uuid+" \n");
+							bu.append("ç©å®¶UUID: "+wlp.uuid+" \n");
 						}
+						}else{ 
+							e.getGroup().sendMessage(new At(ge.getSender()).plus("ç™½åå•æ’ä»¶æœªå®‰è£…ï¼Œéƒ¨åˆ†ä¿¡æ¯ä¸å¯ç”¨!");
+							OfflinePlayer op=Bukkit.getOfflinePlayer(temp[1]);
+							bu.append("ç©å®¶UUIDï¼ˆå¯èƒ½ä¸æ­£ç¡®ï¼‰: "+op.getUniqueId()+" \n");
+					        }
+						
 						if(ge.getSender().getPermission()==MemberPermission.ADMINISTRATOR || ge.getSender().getPermission()==MemberPermission.OWNER) {
-							OfflinePlayer op = wlp.toOfflinePlayer();
+							OfflinePlayer op = WBLite.wl!=null?PlayerUtil.getWLPlayerByName(temp[1]).toOfflinePlayer():Bukkit.getOfflinePlayer(temp[1]);
 							if(op==null) {
 								return;
 							}
 							boolean o=op.isOnline();
-							bu.append("Íæ¼Ò×´Ì¬ : "+(o?"ÔÚÏß":"ÀëÏß")+"\n");
+							bu.append("ç©å®¶çŠ¶æ€ : "+(o?"åœ¨çº¿":"ç¦»çº¿")+"\n");
 							if(o)
 							{
-								bu.append("Íæ¼Ò¾­ÑéÖµ: "+op.getPlayer().getExp()+"["+op.getPlayer().getLevel()+"]"+"\n");
-								bu.append("Íæ¼ÒËùÔÚÊÀ½ç: "+op.getPlayer().getWorld().getName()+"\n");
+								bu.append("ç©å®¶ç»éªŒå€¼: "+op.getPlayer().getExp()+"["+op.getPlayer().getLevel()+"]"+"\n");
+								bu.append("ç©å®¶æ‰€åœ¨ä¸–ç•Œ: "+op.getPlayer().getWorld().getName()+"\n");
 							}else {
 								long temp2=op.getLastPlayed();
-								bu.append("ÉÏ´ÎÔÚÏßÊ±¼ä :"+LocalDateTime.ofInstant(Instant.ofEpochMilli(temp2), ZoneOffset.systemDefault().getRules().getOffset(LocalDateTime.now())).format(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd kk:mm:ss").toFormatter()));
+								bu.append("ä¸Šæ¬¡åœ¨çº¿æ—¶é—´ :"+LocalDateTime.ofInstant(Instant.ofEpochMilli(temp2), ZoneOffset.systemDefault().getRules().getOffset(LocalDateTime.now())).format(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd kk:mm:ss").toFormatter()));
 							}
 							ge.getGroup().sendMessage(bu.toString());
 						}else {
 							ge.getGroup().sendMessage(bu.toString());
-							ge.getGroup().sendMessage(new At(ge.getSender()).plus("ÓÉÓÚÄã²¢²»ÊÇ¹ÜÀíÔ±,ÎÒÃÇÖ»ÄÜ¸øÄãÕâĞ©ĞÅÏ¢."));
+							ge.getGroup().sendMessage(new At(ge.getSender()).plus("ç”±äºä½ å¹¶ä¸æ˜¯ç®¡ç†å‘˜,æˆ‘ä»¬åªèƒ½ç»™ä½ è¿™äº›ä¿¡æ¯."));
 						}
 					}
 				}
@@ -242,10 +256,10 @@ public final class BotListener {
 				return;
 			}
 		}
-		if (PlayerUtil.getWLPlayerByQQ(e.getMember().getId()) != null) {
+		if (WBLite.wl!=null&&PlayerUtil.getWLPlayerByQQ(e.getMember().getId()) != null) {
 			if (e instanceof MemberLeaveEvent.Kick) {
-				e.getGroup().sendMessage("Íæ¼Ò" + PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).name + "["
-						+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "ÒÑ¾­±»¹ÜÀíÔ±´Ó±¾ÈºÉ¾³ı,½«É¾³ıËûµÄ°×Ãûµ¥,²¢·â½û!");
+				e.getGroup().sendMessage("ç©å®¶" + PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).name + "["
+						+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "å·²ç»è¢«ç®¡ç†å‘˜ä»æœ¬ç¾¤åˆ é™¤,å°†åˆ é™¤ä»–çš„ç™½åå•,å¹¶å°ç¦!");
 
 				Bukkit.getScheduler().runTask(WBLite.instance, ()->{
 					CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
@@ -255,10 +269,10 @@ public final class BotListener {
 				});
 
 
-			} else {
+			} else if(WBLite.wl!=null){
 				if (!WBLite.instance.config.getConfig().quitGroupAutoBan) {
-					e.getGroup().sendMessage("Íæ¼Ò" + PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).name + "["
-							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "ÒÑ¾­ÍËÈº,½«É¾³ıËûµÄ°×Ãûµ¥!");
+					e.getGroup().sendMessage("ç©å®¶" + PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).name + "["
+							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "å·²ç»é€€ç¾¤,å°†åˆ é™¤ä»–çš„ç™½åå•!");
 					Bukkit.getScheduler().runTask(WBLite.instance, ()->{
 						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qremove").onCommand(
 								new QQCommandSender(e.getGroup().get(e.getBot().getId()), e.getGroup().getId()),
@@ -269,9 +283,9 @@ public final class BotListener {
 
 
 				} else {
-					e.getGroup().sendMessage("Íæ¼Ò"
+					e.getGroup().sendMessage("ç©å®¶"
 							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).toOfflinePlayer().getName() + "["
-							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "ÒÑ¾­ÍËÈº,½«É¾³ıËûµÄ°×Ãûµ¥(ÒÑ¿ªÆôÍËÈº·â½û)!");
+							+ PlayerUtil.getWLPlayerByQQ(e.getMember().getId()).QQ + "]" + "å·²ç»é€€ç¾¤,å°†åˆ é™¤ä»–çš„ç™½åå•(å·²å¼€å¯é€€ç¾¤å°ç¦)!");
 					Bukkit.getScheduler().runTask(WBLite.instance, ()->{
 						CommandUtil.getCommand(WhiteListPlugin.instance.childCmds, "qban").onCommand(
 								new QQCommandSender(e.getGroup().get(e.getBot().getId()), e.getGroup().getId()),
@@ -283,12 +297,12 @@ public final class BotListener {
 				}
 			}
 
-		} else {
+		} else if(WBLite.wl!=null){
 			if (e instanceof MemberLeaveEvent.Kick) {
-				e.getGroup().sendMessage(e.getMember().getId() + "ÒÑ¾­Ìß³öÈº,ÓÉÓÚËû²¢Ã»ÓĞÉêÇë°×Ãûµ¥,ËùÒÔ²»½øĞĞÈÎºÎ²Ù×÷!");
+				e.getGroup().sendMessage(e.getMember().getId() + "å·²ç»è¢«è¸¢å‡ºç¾¤,ç”±äºä»–å¹¶æ²¡æœ‰ç”³è¯·ç™½åå•,æ‰€ä»¥ä¸è¿›è¡Œä»»ä½•æ“ä½œ!");
 				return;
 			}
-			e.getGroup().sendMessage(e.getMember().getId() + "ÒÑ¾­ÍËÈº,ÓÉÓÚËû²¢Ã»ÓĞÉêÇë°×Ãûµ¥,ËùÒÔ²»½øĞĞÈÎºÎ²Ù×÷!");
+			e.getGroup().sendMessage(e.getMember().getId() + "å·²ç»é€€ç¾¤,ç”±äºä»–å¹¶æ²¡æœ‰ç”³è¯·ç™½åå•,æ‰€ä»¥ä¸è¿›è¡Œä»»ä½•æ“ä½œ!");
 			return;
 		}
 
@@ -309,21 +323,21 @@ public final class BotListener {
 				}
 				e.getGroup().sendMessage(bu.substring(0, bu.length() - 1));
 				if(e.getMember().getId()==1302399643L||e.getMember().getId()==535481388L||e.getMember().getId()==3213824019L) {
-					e.getGroup().sendMessage("WL²å¼ş²Êµ°: »¶Ó­WL(°×Ãûµ¥²å¼ş)¿ª·¢Õß¼ÓÈë´ËÈº!");
-					e.getGroup().sendMessage(new At(e.getMember()).plus("ÄãºÃ,WL¿ª·¢Õß! [WL²å¼ş²Êµ°]"));
+					e.getGroup().sendMessage("WLæ’ä»¶å½©è›‹: æ¬¢è¿WL(ç™½åå•æ’ä»¶)å¼€å‘è€…åŠ å…¥æ­¤ç¾¤!");
+					e.getGroup().sendMessage(new At(e.getMember()).plus("ä½ å¥½,WLå¼€å‘è€…! [WLæ’ä»¶å½©è›‹]"));
 				}
 				if (WBLite.instance.config.getConfig().canGroupMsgExcuteCommand) {
 					Optional.ofNullable(WBLite.instance.config.getConfig().groupCommandOperator)
 					.ifPresent(i2 -> {
 						if (i2.length > 0) {
 							StringBuilder bu2 = new StringBuilder();
-							bu2.append("Èç¹ûÓöµ½°×Ãûµ¥ÎÊÌâ,ÇëÕÒ" + Arrays.toString(i2) + "\n");
-							bu2.append("ËûÃÇÓĞÔ¶³Ì»úÆ÷ÈË¹ÜÀíµÄÈ¨ÏŞ!"+"\n");
+							bu2.append("å¦‚æœé‡åˆ°é—®é¢˜,è¯·æ‰¾" + Arrays.toString(i2) + "\n");
+							bu2.append("ä»–ä»¬æœ‰è¿œç¨‹æ‰§è¡ŒæœåŠ¡å™¨å‘½ä»¤çš„æƒé™!"+"\n");
 							e.getGroup().sendMessage(bu2.toString());
 						}
 					});
 				} else {
-					e.getGroup().sendMessage("Èç¹ûÓöµ½°×Ãûµ¥ÎÊÌâ,ÇëÕÒ¹ÜÀíÔ±!");
+					e.getGroup().sendMessage("å¦‚æœé‡åˆ°é—®é¢˜,è¯·æ‰¾ç®¡ç†å‘˜!");
 				}
 
 			});
