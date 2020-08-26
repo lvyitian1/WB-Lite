@@ -32,13 +32,13 @@ public enum TimePeriod {
 	public String toString()
     {
 		if(this==AM)
-			return "ÉÏÎç";
+			return "ä¸Šåˆ";
 		else if(this==NOON)
-			return "ÖĞÎç";
+			return "ä¸­åˆ";
 		else if(this==PM)
-			return "ÏÂÎç";
+			return "ä¸‹åˆ";
 		else if(this==MIDNIGHT)
-			return "ÎçÒ¹";
+			return "åˆå¤œ";
 		else return null;
     }
 }
