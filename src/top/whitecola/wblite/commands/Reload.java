@@ -13,8 +13,8 @@ import net.mamoe.mirai.BotFactoryJvm;
 import net.mamoe.mirai.utils.BotConfiguration;
 import top.dsbbs2.common.config.SimpleConfig;
 import top.dsbbs2.common.lambda.INoThrowsRunnable;
-import top.dsbbs2.whitelist.commands.IChildCommand;
-import top.dsbbs2.whitelist.util.VectorUtil;
+import top.dsbbs2.whitelist_shared.IChildCommand;
+import top.dsbbs2.whitelist_shared.VectorUtil;
 import top.whitecola.wblite.BotListener;
 import top.whitecola.wblite.EventUtils;
 import top.whitecola.wblite.WBLite;
@@ -26,13 +26,13 @@ public class Reload implements IChildCommand{
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(args.length==1) {
-			Bukkit.getServer().broadcastMessage("Èº»úÆ÷ÈË½«ÖØÆô!");
-			GroupUtil.sendMsgToGroupAuto("»úÆ÷ÈË¼´½«ÖØÆô,ÖØÆô¹ı³ÌÖĞ»á³öÏÖ²»»ØÏûÏ¢µÈ×´¿ö!");
+			Bukkit.getServer().broadcastMessage("ç¾¤æœºå™¨äººå°†é‡å¯!");
+			GroupUtil.sendMsgToGroupAuto("æœºå™¨äººå³å°†é‡å¯,é‡å¯è¿‡ç¨‹ä¸­ä¼šå‡ºç°ä¸å›æ¶ˆæ¯ç­‰çŠ¶å†µ!");
 			INoThrowsRunnable.invoke(WBLite.instance.config::loadConfig);
-			System.out.println("ÒÑ¾­³¢ÊÔ¼ÓÔØÅäÖÃÎÄ¼ş,Èç¹û³öÏÖnullPointerException,ºÜ¿ÉÄÜÊÇÅäÖÃÎÄ¼şÒò¸ü¸Ä¶øËğ»µ,»òÕßÓĞÑ¡ÏîÃ»ÓĞÌîĞ´!");
+			System.out.println("å·²ç»å°è¯•åŠ è½½é…ç½®æ–‡ä»¶,å¦‚æœå‡ºç°nullPointerException,å¾ˆå¯èƒ½æ˜¯é…ç½®æ–‡ä»¶å› æ›´æ”¹è€ŒæŸå,æˆ–è€…æœ‰é€‰é¡¹æ²¡æœ‰å¡«å†™!");
 			if(WBLite.instance.config.getConfig().password==null||WBLite.instance.config.getConfig().password.isEmpty())
 			{
-				WBLite.instance.getLogger().severe("ÇëÏÈÌîĞ´"+((SimpleConfig<?>)WBLite.instance.config).conf.getAbsolutePath().toString()+"ÖĞµÄqq(ÕËºÅ)ºÍpassword(ÃÜÂë)£¡ÔÙÖØÔØ±¾²å¼ş");
+				WBLite.instance.getLogger().severe("è¯·å…ˆå¡«å†™"+((SimpleConfig<?>)WBLite.instance.config).conf.getAbsolutePath().toString()+"ä¸­çš„qq(è´¦å·)å’Œpassword(å¯†ç )ï¼å†é‡è½½æœ¬æ’ä»¶");
 				
 				return true;
 			}
@@ -70,8 +70,8 @@ public class Reload implements IChildCommand{
 			}finally {
 				temp.stop();
 			}
-			System.out.println("»úÆ÷ÈËÖØÆôÍê±Ï!");
-			GroupUtil.sendMsgToGroupAuto("»úÆ÷ÈËÖØÆôÍê±Ï!");
+			System.out.println("æœºå™¨äººé‡å¯å®Œæ¯•!");
+			GroupUtil.sendMsgToGroupAuto("æœºå™¨äººé‡å¯å®Œæ¯•!");
 			return true;
 		}
 		return false;
@@ -105,6 +105,6 @@ public class Reload implements IChildCommand{
     @NotNull
     @Override
     public String getDescription(){
-        return "ÖØĞÂ¶ÁÈ¡ÅäÖÃÎÄ¼ş,ÖØÆô»úÆ÷ÈË.";
+        return "é‡æ–°è¯»å–é…ç½®æ–‡ä»¶,é‡å¯æœºå™¨äºº.";
     }
 }
