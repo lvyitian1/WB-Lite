@@ -66,8 +66,8 @@ public class CommandUtil {
 	}
 	public static boolean isnull(String str){
 		if(str!=null&&!str.equals("")){
-			MsgUtil.makeDebugMsgAndSend((str!=null)+" 111");
-			MsgUtil.makeDebugMsgAndSend(!(str.equals(""))+" 222");
+			//MsgUtil.makeDebugMsgAndSend((str!=null)+" 111");
+			//MsgUtil.makeDebugMsgAndSend(!(str.equals(""))+" 222");
 			return false;
 		}
 		//System.out.println("str!=null is"+str!=null);
