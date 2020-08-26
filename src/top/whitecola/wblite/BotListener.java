@@ -212,7 +212,7 @@ public final class BotListener {
 							bu.append("玩家UUID: "+wlp.uuid+" \n");
 						}
 						}else{ 
-							e.getGroup().sendMessage(new At(ge.getSender()).plus("白名单插件未安装，部分信息不可用!");
+							e.getGroup().sendMessage(new At(ge.getSender()).plus("白名单插件未安装，部分信息不可用!"));
 							OfflinePlayer op=Bukkit.getOfflinePlayer(temp[1]);
 							bu.append("玩家UUID（可能不正确）: "+op.getUniqueId()+" \n");
 					        }
