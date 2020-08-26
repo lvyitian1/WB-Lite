@@ -10,7 +10,7 @@ import org.bukkit.event.entity.ExplosionPrimeEvent;
 import top.whitecola.wblite.WBLite;
 import top.whitecola.wlbot.util.BotUtil;
 
-public class BlockListener implements Listener{
+public class BlockListener implements Listener {
 	@EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=false)
 	public void onTNTExplosionPrime(ExplosionPrimeEvent e) {
 		if((!WBLite.instance.config.getConfig().synchronousMsgFunction )||(!WBLite.instance.config.getConfig().TNTEventMsg)) {
@@ -22,7 +22,7 @@ public class BlockListener implements Listener{
 		if(e.getEntityType()== EntityType.PRIMED_TNT) {
 			Location loc = e.getEntity().getLocation().clone();
 			WBLite.instance.addTask(()->
-				BotUtil.sendEventMessageToGroup("Ò»¸öTNT±¬Õ¨ÔÚ"+loc.getWorld().getName()+"ÊÀ½ç "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ())
+				BotUtil.sendEventMessageToGroup("Ã’Â»Â¸Ã¶TNTÂ±Â¬Ã•Â¨Ã”Ãš"+loc.getWorld().getName()+"ÃŠÃ€Â½Ã§ "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ())
 			);
 			
 			
