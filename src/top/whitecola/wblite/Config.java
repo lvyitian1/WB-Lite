@@ -43,6 +43,6 @@ public class Config {
 	public boolean removeColorText = false;
         public boolean forbidColorInGroupMsg = false;
         public boolean forbidNewLineInGroupMsg = true;
-        
+        public boolean autoMode = false;
 	//public boolean noWhitelistFunction = false;
 }
