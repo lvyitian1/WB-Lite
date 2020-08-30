@@ -50,6 +50,13 @@ public class WBLite extends JavaPlugin{
 			INoThrowsRunnable.invoke(this::saveConfig);
 		}
 	}};
+	public IConfig<UUIDStorage> uuid = new SimpleConfig<UUIDStorage>(getDataFolder().getAbsolutePath().toString()+File.separator+"uuid.json","UTF8",UUIDStorage.class) {{
+		INoThrowsRunnable.invoke(this::loadConfig);
+		if (!this.g.toJson(this.getConfig()).trim().equals(FileUtils.readTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"uuid.json"), StandardCharsets.UTF_8).trim())) {
+			FileUtils.writeTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"uuid.json.bak"),FileUtils.readTextFile(new File(getDataFolder().getAbsolutePath().toString()+File.separator+"uuid.json"), StandardCharsets.UTF_8),StandardCharsets.UTF_8,false);
+			INoThrowsRunnable.invoke(this::saveConfig);
+		}
+	}};
 	public static WBLite instance;
 	public static Plugin wl;
 	public Bot bot;
