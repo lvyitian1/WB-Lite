@@ -1,6 +1,6 @@
 name: WBLite
 author: [white_cola,lvxinlei]
-version: 2.9.3
+version: 2.9.4
 main: top.whitecola.wblite.WBLite
 depend: [MiraiBukkit]
 softdepend: [WhiteList]
