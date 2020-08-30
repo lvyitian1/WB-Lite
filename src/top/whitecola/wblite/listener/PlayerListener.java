@@ -25,6 +25,10 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority=EventPriority.MONITOR)
 	public void onPlayerLogin(PlayerLoginEvent e) {
 		if (e.getResult()==Result.ALLOWED) {
+			if(WBLite.wl!=null&&WBLite.instance.config.getConfig().autoMode)
+			{
+				
+			}
 			WBLite.instance.addTask(()->{
 				if(WBLite.instance.config.getConfig().playerJoinServerGroupMsg) {
 					sendJoinOrLeaveServerGroupMsg(1, e.getPlayer());
