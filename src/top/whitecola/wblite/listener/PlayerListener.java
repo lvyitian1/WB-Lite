@@ -33,13 +33,13 @@ public class PlayerListener implements Listener {
 			if(WBLite.wl!=null&&WBLite.instance.config.getConfig().autoMode)
 			{
 				INoThrowsRunnable.invoke(()->{
-				Method am=WBLite.wl.getClas().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil",true).getMethod("addToWhiteListAndSave",WLPlayer.class);
+				Method am=WBLite.wl.getClass().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil",true).getMethod("addToWhiteListAndSave",WLPlayer.class);
 				for(Long i : WBLite.instance.config.getConfig().useBotGroup)
 				{
 					try{
 					for(Member i2 : WBLite.instance.bot.getGroup(i).getMembers())
 					{
-						if(i2.getNameCardOrNick().equals(e.getPlayer().getName()))
+						if(i2.getNameCard().equals(e.getPlayer().getName()))
 						{
 							
 						}
