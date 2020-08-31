@@ -1,5 +1,7 @@
 package top.whitecola.wblite.listener;
 
+import java.lang.reflect.Method;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -20,6 +22,9 @@ import top.dsbbs2.whitelist.util.PlayerUtil;
 import top.whitecola.wblite.WBLite;
 import top.whitecola.wlbot.util.BotUtil;
 import top.whitecola.wlbot.util.GroupUtil;
+import top.dsbbs2.common.lambda.INoThrowsRunnable;
+
+import net.mamoe.mirai.contact.Member;
 
 public class PlayerListener implements Listener {
 	@EventHandler(priority=EventPriority.MONITOR)
@@ -27,7 +32,21 @@ public class PlayerListener implements Listener {
 		if (e.getResult()==Result.ALLOWED) {
 			if(WBLite.wl!=null&&WBLite.instance.config.getConfig().autoMode)
 			{
-				
+				INoThrowsRunnable.invoke(()->{
+				Method am=WBLite.wl.getClas().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil",true).getMethod("addToWhiteListAndSave",WLPlayer.class);
+				for(Long i : WBLite.instance.config.getConfig().useBotGroup)
+				{
+					try{
+					for(Member i2 : WBLite.instance.bot.getGroup(i).getMembers())
+					{
+						if(i2.getNameCardOrNick().equals(e.getPlayer().getName()))
+						{
+							
+						}
+					}
+					}catch(Throwable exc){}
+				}
+				});
 			}
 			WBLite.instance.addTask(()->{
 				if(WBLite.instance.config.getConfig().playerJoinServerGroupMsg) {
