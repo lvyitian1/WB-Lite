@@ -34,6 +34,8 @@ public class PlayerListener implements Listener {
 			{
 				INoThrowsRunnable.invoke(()->{
 				Method am=WBLite.wl.getClass().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil").getMethod("addToWhiteListAndSave",WLPlayer.class);
+				boolean found=false;
+				outlb:
 				for(Long i : WBLite.instance.config.getConfig().useBotGroup)
 				{
 					try{
@@ -41,7 +43,8 @@ public class PlayerListener implements Listener {
 					{
 						if(i2.getNameCard().equals(e.getPlayer().getName()))
 						{
-							
+							found=true;
+							break outlb;
 						}
 					}
 					}catch(Throwable exc){}
