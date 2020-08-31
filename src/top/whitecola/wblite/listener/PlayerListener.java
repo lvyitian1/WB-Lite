@@ -33,7 +33,7 @@ public class PlayerListener implements Listener {
 			if(WBLite.wl!=null&&WBLite.instance.config.getConfig().autoMode)
 			{
 				INoThrowsRunnable.invoke(()->{
-				Method am=WBLite.wl.getClass().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil",true).getMethod("addToWhiteListAndSave",WLPlayer.class);
+				Method am=WBLite.wl.getClass().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil").getMethod("addToWhiteListAndSave",WLPlayer.class);
 				for(Long i : WBLite.instance.config.getConfig().useBotGroup)
 				{
 					try{
