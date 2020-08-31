@@ -1,6 +1,7 @@
 package top.whitecola.wblite.listener;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -34,7 +35,7 @@ public class PlayerListener implements Listener {
 			{
 				INoThrowsRunnable.invoke(()->{
 				Method am=WBLite.wl.getClass().getClassLoader().loadClass("top.dsbbs2.whitelist.util.PlayerUtil").getMethod("addToWhiteListAndSave",WLPlayer.class);
-				boolean found=false;
+				long qq=-1;
 				outlb:
 				for(Long i : WBLite.instance.config.getConfig().useBotGroup)
 				{
@@ -43,12 +44,18 @@ public class PlayerListener implements Listener {
 					{
 						if(i2.getNameCard().equals(e.getPlayer().getName()))
 						{
-							found=true;
+							qq=i2.getId();
 							break outlb;
 						}
 					}
 					}catch(Throwable exc){}
 				}
+				WhiteListPlugin.instance.whitelist.getConfig().players.removeIf(i->Objects.equals(i.name,e.getPlayer().getName())||Objects.equals(i.uuid,e.getPlayer().getUniqueId()));
+				if(qq!=-1)
+				{
+					am.invoke(null,new WLPlayer(e.getPlayer().getUniqueId(),e.getPlayer().getName(),qq));
+				}
+				WhiteListPlugin.instance.whitelist.saveConfig();
 				});
 			}
 			WBLite.instance.addTask(()->{
