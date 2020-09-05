@@ -99,21 +99,21 @@ public class PlayerListener implements Listener {
 			if(((WhiteListConfig.WLPlayer)wlp).QQ!=-1) {
 				if(type==1) {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 加入了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()+1)+" 人.");
 					return;
 				}else {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 退出了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()-1)+" 人.");
 					return;
 				}
 			}else {
 				if(type==1) {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+" 加入了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()+1)+" 人.");
 					return;
 				}else {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+" 退出了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size())+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()-1)+" 人.");
 					return;
 				}
 
