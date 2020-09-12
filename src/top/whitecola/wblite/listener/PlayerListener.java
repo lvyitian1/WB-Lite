@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -58,7 +58,7 @@ public class PlayerListener implements Listener {
 				WhiteListPlugin.instance.whitelist.saveConfig();
 				});
 			}
-			WBLite.instance.addTask(()->{
+			
 				if(WBLite.instance.config.getConfig().playerJoinServerGroupMsg) {
 					sendJoinOrLeaveServerGroupMsg(1, e.getPlayer());
 				}
@@ -72,7 +72,7 @@ public class PlayerListener implements Listener {
 						});
 					}
 				}
-			});
+			
 		}
 	}
 
@@ -99,21 +99,21 @@ public class PlayerListener implements Listener {
 			if(((WhiteListConfig.WLPlayer)wlp).QQ!=-1) {
 				if(type==1) {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 加入了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()+1)+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()+1)+" 人.");
 					return;
 				}else {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+"["+((WhiteListConfig.WLPlayer)wlp).QQ+"] 退出了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()-1)+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()-1)+" 人.");
 					return;
 				}
 			}else {
 				if(type==1) {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+" 加入了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()+1)+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()+1)+" 人.");
 					return;
 				}else {
 					GroupUtil.sendMsgToGroupAuto("玩家 "+p.getName()+" 退出了游戏.");
-					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()-1)+" 人.");
+					GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()-1)+" 人.");
 					return;
 				}
 
@@ -121,11 +121,11 @@ public class PlayerListener implements Listener {
 		}else {
 			if(type==1) {
 				GroupUtil.sendMsgToGroupAuto((WBLite.wl!=null?"没有白名单的":"")+"玩家 "+p.getName()+" 加入了游戏.");
-				GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()+1)+" 人.");
+				GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()+1)+" 人.");
 				return;
 			}else {
 				GroupUtil.sendMsgToGroupAuto((WBLite.wl!=null?"没有白名单的":"")+"玩家 "+p.getName()+" 退出了游戏.");
-				GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+(p.getServer().getOnlinePlayers().size()-1)+" 人.");
+				GroupUtil.sendMsgToGroupAuto("目前服务器人数: "+Math.max(0,p.getServer().getOnlinePlayers().size()-1)+" 人.");
 				return;
 			}
 		}
@@ -136,7 +136,7 @@ public class PlayerListener implements Listener {
 	}
 
 	@EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=false)
-	public void onPlayerMsg(AsyncPlayerChatEvent e) {
+	public void onPlayerMsg(PlayerChatEvent e) {
 		if(WBLite.instance.config.getConfig().synchronousMsgFunction) {
 			WBLite.instance.addTask(()->{
 				BotUtil.sendServerMsgToGroup(e.getMessage(),e.getPlayer());
